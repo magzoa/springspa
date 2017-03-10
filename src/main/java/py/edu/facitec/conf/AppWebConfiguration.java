@@ -8,9 +8,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import py.edu.facitec.controller.HomeController;
+import py.edu.facitec.dao.ClienteDAO;
 
 @EnableWebMvc
-@ComponentScan(basePackageClasses={HomeController.class})
+@ComponentScan(basePackageClasses={HomeController.class,ClienteDAO.class})
 public class AppWebConfiguration extends WebMvcConfigurerAdapter {
 
 	

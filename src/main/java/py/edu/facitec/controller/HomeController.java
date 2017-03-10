@@ -7,10 +7,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class HomeController {
+	
+				//responde a la raiz del proyecto
 	@RequestMapping("/")
 	public String home(){
 		
 		System.out.println("Cargando la pagina principal");
+		
+				//ubicamos el archivo dentro de la carpeta
+				//ahora auto completa index.html
 		return "view/templates/index";
 	}
 }
