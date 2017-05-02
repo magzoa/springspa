@@ -8,17 +8,31 @@ import org.springframework.stereotype.Repository;
 import py.edu.facitec.model.Cliente;
 
 @Repository //Indicamos a Spring que manejara datos
-public class ClienteDAO {
-	
+public class ClienteDAO extends DAOGenerico<Cliente> {
+
 	@PersistenceContext //Contexto de Persistencia
 	private EntityManager manager;
+	//Metodo Constructor
+	public ClienteDAO() {
+		super(Cliente.class);
+	}
+
+
 	
-public void save(Cliente cliente){
+	@Override
+	protected EntityManager getEntityManager() {
+		// TODO Auto-generated method stub
+		return manager;
+	}
 	
-			//Insertar un dato
-	manager.persist(cliente);
 	
-}	
+	
+//public void save(Cliente cliente){
+//	
+//			//Insertar un dato
+//	manager.persist(cliente);
+//	
+//}	
 	
 	
 	

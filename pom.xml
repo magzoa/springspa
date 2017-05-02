@@ -121,6 +121,22 @@
  	 	 	<version>9.4-1201-jdbc4</version>  	 	</dependency>
  				
  
+ <!-- Conversion a JSON --> 
+ 	<dependency> 
+<groupId>com.fasterxml.jackson.core</groupId> 
+<artifactId>jackson-core</artifactId> 
+<version>2.5.1</version> 
+</dependency> 
+ 
+<dependency> 
+<groupId>com.fasterxml.jackson.core</groupId> 
+<artifactId>jackson-databind</artifactId> 
+<version>2.5.1</version> 
+</dependency> 
+ 
+ 
+ 
+ 
  	</dependencies>
   
   

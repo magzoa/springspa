@@ -25,7 +25,7 @@ public class ClienteController {
 		
 		System.out.println("Cliente: "+cliente);
 		
-		dao.save(cliente);//Registrar en la bd
+		dao.guardar(cliente);
 		
 				//carpeta    pagina.html
 		return "view/cliente/ok";
