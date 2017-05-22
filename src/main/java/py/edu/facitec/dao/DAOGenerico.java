@@ -31,10 +31,15 @@ public void actualizar(T entity){
 }
 
 public void eliminar(T entity){
-getEntityManager().remove(getEntityManager().contains(entityClass)?
+	
+	System.out.println("La entidad"+entity);//Faltaba cambiar entityClass por entity
+getEntityManager().remove(getEntityManager().contains(entity)?
 		entity:getEntityManager().merge(entity)
 		
+		
+		
 		);
+System.out.println("La segunda "+entity);
 }
 
 public T buscar(Object id){
@@ -44,7 +49,7 @@ return getEntityManager().find(entityClass, id);
 }
 
 public List<T> buscarTodos(){
-	
+														
 return getEntityManager().createQuery("from "+entityClass.getSimpleName(), entityClass).getResultList();	
 	
 	

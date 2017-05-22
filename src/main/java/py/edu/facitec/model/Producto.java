@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 @Entity
 public class Producto {
@@ -19,6 +20,17 @@ public class Producto {
 	private Double precio;
 	private Integer cantidad;
 	
+	@Transient   //para no registrar en la bd
+	private String mensaje;
+	
+	public String getMensaje() {
+		return mensaje;
+	}
+
+	public void setMensaje(String mensaje) {
+		this.mensaje = mensaje;
+	}
+
 	@OneToMany(mappedBy="producto")
 	private List<ItemPedido> itemPedidos;
 

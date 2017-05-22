@@ -15,19 +15,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import py.edu.facitec.dao.ProductoDAO;
-import py.edu.facitec.model.Producto;
+import py.edu.facitec.dao.GerenteDAO;
+import py.edu.facitec.model.Gerente;
 
 //Para construir un controlador que soporte la arquitectura REST
 @RestController
 
 @Transactional
 
-@RequestMapping("/productos")//Este es utilizado para todos los metodos de la clase
-public class ProductoController {
+@RequestMapping("/gerentes")//Este es utilizado para todos los metodos de la clase
+public class GerenteController {
 
 	@Autowired
-	private ProductoDAO productoDAO;
+	private GerenteDAO gerenteDAO;
 	
 	
 	//Si queremos agregar una url utilizamos value="/guardar"
@@ -35,60 +35,58 @@ public class ProductoController {
 												//Se convierte de Json a objeto java
 										//Mediante la libreria Japckson
 															
-public ResponseEntity<Producto>  registrar(@RequestBody Producto producto){
+public ResponseEntity<Gerente>  registrar(@RequestBody Gerente gerente){
 		
-				System.out.println(producto);
+				System.out.println(gerente);
 	
-				productoDAO.guardar(producto);
+				gerenteDAO.guardar(gerente);
 
 				
-		return new ResponseEntity<Producto>(producto, HttpStatus.OK);
+		return new ResponseEntity<Gerente>(gerente, HttpStatus.OK);
 	}
 	
 @RequestMapping(method=RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
-public ResponseEntity<List<Producto>> listado(){
+public ResponseEntity<List<Gerente>> listado(){
 	
 	
-	List<Producto> productos=productoDAO.buscarTodos();
+	List<Gerente> gerentes=gerenteDAO.buscarTodos();
 	
 	
-	System.out.println(productos);
+	System.out.println(gerentes);
 	
 					//Al indicar que va producir Json dentro del Request Mapping
 	
 	//Convierte el objeto java en JSON  a travéz del ResponseEntity
-	return new ResponseEntity<List<Producto>>(productos,HttpStatus.OK);
+	return new ResponseEntity<List<Gerente>>(gerentes,HttpStatus.OK);
 	
 }	
                    //Parametro que recibe a travez de la url
 @RequestMapping(value="/{id}", method=RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
 									 //Convierte el parametro a un objeto java		
-public ResponseEntity<Producto> buscar(@PathVariable Integer id){
+public ResponseEntity<Gerente> buscar(@PathVariable Integer id){
 	
 	
-		Producto producto=productoDAO.buscar(id);
+		Gerente gerente=gerenteDAO.buscar(id);
 	
 													//representa el estado 200
 												//que indica que la petición se realizo con exito
-	return new ResponseEntity<Producto>(producto,HttpStatus.OK);
+	return new ResponseEntity<Gerente>(gerente,HttpStatus.OK);
 }
 
 
 
 @RequestMapping(value="/{id}", method=RequestMethod.DELETE,produces=MediaType.APPLICATION_JSON_VALUE)
-public ResponseEntity<Producto> eliminar(@PathVariable Integer id){
+public ResponseEntity<Gerente> eliminar(@PathVariable Integer id){
 
 	
-	Producto producto=productoDAO.buscar(id);
+	Gerente gerente=gerenteDAO.buscar(id);
 	
-	System.out.println("Producto "+producto);
-	
-	if(producto==null){
+	if(gerente==null){
 		
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 	
-	productoDAO.eliminar(producto);
+	gerenteDAO.eliminar(gerente);
 	
 	
 	

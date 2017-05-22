@@ -15,19 +15,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import py.edu.facitec.dao.ProductoDAO;
-import py.edu.facitec.model.Producto;
+import py.edu.facitec.dao.PedidoDAO;
+import py.edu.facitec.model.Pedido;
 
 //Para construir un controlador que soporte la arquitectura REST
 @RestController
 
 @Transactional
 
-@RequestMapping("/productos")//Este es utilizado para todos los metodos de la clase
-public class ProductoController {
+@RequestMapping("/pedidos")//Este es utilizado para todos los metodos de la clase
+public class PedidoController {
 
 	@Autowired
-	private ProductoDAO productoDAO;
+	private PedidoDAO pedidoDAO;
 	
 	
 	//Si queremos agregar una url utilizamos value="/guardar"
@@ -35,60 +35,58 @@ public class ProductoController {
 												//Se convierte de Json a objeto java
 										//Mediante la libreria Japckson
 															
-public ResponseEntity<Producto>  registrar(@RequestBody Producto producto){
+public ResponseEntity<Pedido>  registrar(@RequestBody Pedido pedido){
 		
-				System.out.println(producto);
+				System.out.println(pedido);
 	
-				productoDAO.guardar(producto);
+				pedidoDAO.guardar(pedido);
 
 				
-		return new ResponseEntity<Producto>(producto, HttpStatus.OK);
+		return new ResponseEntity<Pedido>(pedido, HttpStatus.OK);
 	}
 	
 @RequestMapping(method=RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
-public ResponseEntity<List<Producto>> listado(){
+public ResponseEntity<List<Pedido>> listado(){
 	
 	
-	List<Producto> productos=productoDAO.buscarTodos();
+	List<Pedido> pedidos=pedidoDAO.buscarTodos();
 	
 	
-	System.out.println(productos);
+	System.out.println(pedidos);
 	
 					//Al indicar que va producir Json dentro del Request Mapping
 	
 	//Convierte el objeto java en JSON  a travéz del ResponseEntity
-	return new ResponseEntity<List<Producto>>(productos,HttpStatus.OK);
+	return new ResponseEntity<List<Pedido>>(pedidos,HttpStatus.OK);
 	
 }	
                    //Parametro que recibe a travez de la url
 @RequestMapping(value="/{id}", method=RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
 									 //Convierte el parametro a un objeto java		
-public ResponseEntity<Producto> buscar(@PathVariable Integer id){
+public ResponseEntity<Pedido> buscar(@PathVariable Integer id){
 	
 	
-		Producto producto=productoDAO.buscar(id);
+		Pedido pedido=pedidoDAO.buscar(id);
 	
 													//representa el estado 200
 												//que indica que la petición se realizo con exito
-	return new ResponseEntity<Producto>(producto,HttpStatus.OK);
+	return new ResponseEntity<Pedido>(pedido,HttpStatus.OK);
 }
 
 
 
 @RequestMapping(value="/{id}", method=RequestMethod.DELETE,produces=MediaType.APPLICATION_JSON_VALUE)
-public ResponseEntity<Producto> eliminar(@PathVariable Integer id){
+public ResponseEntity<Pedido> eliminar(@PathVariable Integer id){
 
 	
-	Producto producto=productoDAO.buscar(id);
+	Pedido pedido=pedidoDAO.buscar(id);
 	
-	System.out.println("Producto "+producto);
-	
-	if(producto==null){
+	if(pedido==null){
 		
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 	
-	productoDAO.eliminar(producto);
+	pedidoDAO.eliminar(pedido);
 	
 	
 	

@@ -5,12 +5,13 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
 
+import py.edu.facitec.model.Pedido;
 import py.edu.facitec.model.Producto;
 
 //Indicamos a Spring que se trata de una clase
 //que manipulara datos 
 @Repository
-public class PedidoDAO extends DAOGenerico<Producto> {
+public class PedidoDAO extends DAOGenerico<Pedido> {
 
 	@PersistenceContext
 	private EntityManager manager;
@@ -20,7 +21,7 @@ public class PedidoDAO extends DAOGenerico<Producto> {
 	public PedidoDAO() {
 		//Pasamos la clase con que va trabajar el DAOGenerico 
 		//a travez de su constructor
-		super(Producto.class);
+		super(Pedido.class);
 		// TODO Auto-generated constructor stub
 	}
 
